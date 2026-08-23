@@ -1,4 +1,5 @@
 {
+  "outputDirectory": "dist/ai-vision-chatbot/browser",
   "rewrites": [
     {
       "source": "/(.*)",
