@@ -1,4 +1,4 @@
-import { Component, inject, ElementRef, ViewChild, AfterViewChecked, signal } from '@angular/core';
+import { Component, inject, ElementRef, ViewChild, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChatService } from '../../services/chat.service';
 import { ChatMessage, QuickPrompt } from '../../models/chat.models';
@@ -471,7 +471,7 @@ import { ChatMessage, QuickPrompt } from '../../models/chat.models';
     }
   `]
 })
-export class ChatContainerComponent implements AfterViewChecked {
+export class ChatContainerComponent {
   chatService = inject(ChatService);
 
   @ViewChild('scrollContainer') private scrollContainer!: ElementRef<HTMLDivElement>;
