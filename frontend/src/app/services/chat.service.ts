@@ -1,4 +1,4 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, inject, signal, isDevMode } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { marked } from 'marked';
@@ -18,6 +18,7 @@ import {
 })
 export class ChatService {
   private http = inject(HttpClient);
+  private apiUrl = isDevMode() ? '' : 'https://aivision-lle2.vercel.app';
 
   // State Signals
   readonly messages = signal<ChatMessage[]>([]);
@@ -88,7 +89,7 @@ export class ChatService {
 
   async fetchConfig(): Promise<void> {
     try {
-      const cfg = await firstValueFrom(this.http.get<ConfigResponse>('/api/config'));
+      const cfg = await firstValueFrom(this.http.get<ConfigResponse>(this.apiUrl + '/api/config'));
       this.config.set(cfg);
     } catch (err) {
       console.warn('Could not fetch backend config:', err);
@@ -130,7 +131,7 @@ export class ChatService {
 
     try {
       const response = await firstValueFrom(
-        this.http.post<ImageValidationResponse>('/api/upload', formData)
+        this.http.post<ImageValidationResponse>(this.apiUrl + '/api/upload', formData)
       );
 
       if (response.valid && response.preview_url) {
@@ -195,7 +196,7 @@ export class ChatService {
 
     try {
       const response = await firstValueFrom(
-        this.http.post<ChatResponse>('/api/chat', requestPayload)
+        this.http.post<ChatResponse>(this.apiUrl + '/api/chat', requestPayload)
       );
 
       // 4. Construct AI Assistant Message
