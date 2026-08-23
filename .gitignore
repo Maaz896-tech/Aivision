@@ -1,0 +1,29 @@
+# Environments
+.env
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Node
+node_modules/
+dist/
+.angular/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Miscellaneous
+test_sample.jpg
+*.log

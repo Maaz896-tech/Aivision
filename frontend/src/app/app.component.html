@@ -1,0 +1,46 @@
+<div class="app-layout">
+  <!-- Top Navigation Header -->
+  <app-header></app-header>
+
+  <!-- Main Body Workspace -->
+  <main class="workspace-layout">
+    <!-- Left Sidebar: Vision Context & Image Inspector -->
+    <aside class="sidebar-panel">
+      <app-image-uploader></app-image-uploader>
+
+      <!-- Architecture & Capabilities Card -->
+      <div class="info-card glass-panel">
+        <div class="info-header">
+          <i class="fa-solid fa-microchip text-primary"></i>
+          <span class="info-title">Multimodal Architecture</span>
+        </div>
+        <p class="info-desc">
+          Analyzes visual tokens in real-time. Supports multi-turn contextual follow-up questions for the same uploaded image.
+        </p>
+        <div class="specs-grid">
+          <div class="spec-item">
+            <span class="spec-label">Engine</span>
+            <span class="spec-value">FastAPI + Python 3.12</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">AI Model</span>
+            <span class="spec-value">{{ chatService.config()?.current_model || 'Gemini 2.0 Flash' }}</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Storage</span>
+            <span class="spec-value">Zero Disk Retention (In-Memory)</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Right Panel: ChatGPT-Style Conversational View -->
+    <section class="chat-panel">
+      <app-chat-container></app-chat-container>
+      <app-chat-input></app-chat-input>
+    </section>
+  </main>
+
+  <!-- Fullscreen Lightbox Modal -->
+  <app-image-modal></app-image-modal>
+</div>
